@@ -1,0 +1,6 @@
+docs/
+README.md
+CHANGELOG.md
+dist/
+node_modules
+*.json
