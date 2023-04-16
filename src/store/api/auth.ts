@@ -11,9 +11,9 @@ import { transformResponse } from '@utils/transformResponse';
 
 const authApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
-        getUser: builder.query<UserResult, null>({
+        getUser: builder.query<UserResult, void>({
             query: () => `auth`,
-            providesTags: (result) => [{ type: 'User', id: result?._id }],
+            providesTags: ['User'],
             transformResponse,
         }),
         register: builder.mutation<AuthResult, RegisterInput>({
@@ -22,6 +22,7 @@ const authApi = rootApi.injectEndpoints({
                 method: 'POST',
                 body,
             }),
+            invalidatesTags: ['User'],
             transformResponse,
         }),
         login: builder.mutation<AuthResult, LoginInput>({
@@ -30,6 +31,7 @@ const authApi = rootApi.injectEndpoints({
                 method: 'POST',
                 body,
             }),
+            invalidatesTags: ['User'],
             transformResponse,
         }),
     }),

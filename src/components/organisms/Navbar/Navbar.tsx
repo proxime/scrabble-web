@@ -18,7 +18,7 @@ import {
 export const Navbar = () => {
     const dispatch = useAppDispatch();
 
-    const { data, isLoading } = useGetUserQuery(null, {
+    const { data, isLoading } = useGetUserQuery(undefined, {
         skip: !localStorage.getItem('token'),
     });
 

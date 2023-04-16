@@ -1,3 +1,5 @@
+import { GameStatusType, PlayerType } from '@@types/game';
+
 import { validateBoard } from '@utils/validateBoard';
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -18,12 +20,20 @@ export interface BoardOperation {
     row: number;
 }
 
+export interface CurrentGame {
+    id: string;
+    players: PlayerType[];
+    status: GameStatusType;
+    isCreator: boolean;
+}
+
 export interface GameState {
     activeLetter: null | Puzzle;
     availablePuzzles: Puzzle[];
     boardedPuzzles: Puzzle[];
     puzzles: Puzzle[];
     board: (null | BoardPuzzle)[][];
+    currentGame?: CurrentGame;
 }
 
 const initBoard: (null | BoardPuzzle)[][] = Array(15)
@@ -115,6 +125,10 @@ export const gameSlice = createSlice({
             );
             state.board[column][row] = null;
         },
+        createGame: (state, { payload }: PayloadAction<CurrentGame>) => {
+            state.currentGame = payload;
+        },
+        closeGame: () => initialState,
         acceptPuzzles: (state) => {
             const { isValid } = validateBoard(state.board);
             console.log(isValid);
@@ -123,10 +137,12 @@ export const gameSlice = createSlice({
 });
 
 export const {
-    setActiveLetter,
+    acceptPuzzles,
+    closeGame,
+    createGame,
     putLetterOnBoard,
     removeLetterFromBoard,
-    acceptPuzzles,
+    setActiveLetter,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

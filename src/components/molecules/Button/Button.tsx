@@ -10,7 +10,7 @@ export type ButtonSizes = 'small' | 'default';
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     active?: boolean;
     center?: boolean;
-    children: string;
+    children: React.ReactNode;
     fullWidth?: boolean;
     isLoading?: boolean;
     minWidth?: number;

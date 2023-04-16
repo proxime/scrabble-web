@@ -28,14 +28,14 @@ export const DashboardPage = () => {
     const [createGame] = useCreateGameMutation();
 
     const navigate = useNavigate();
-    const { data, isLoading } = useGetUserQuery(null, {
+    const { data, isLoading } = useGetUserQuery(undefined, {
         skip: !localStorage.getItem('token'),
     });
 
     const dispatch = useDispatch();
 
     const handleCreateGame = async () => {
-        await createGame({});
+        await createGame();
         navigate('/lobby');
     };
 

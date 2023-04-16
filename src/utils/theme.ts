@@ -46,15 +46,15 @@ export const theme = {
         buttons: {
             primary: {
                 default: '#ffffff',
-                hover: '#E6E6F1',
+                hover: '#f2f2f2',
                 disabled: 'red',
                 border: '#CDCDDB',
             },
             secondary: {
-                default: '#00ff55',
-                hover: '#00e64d',
+                default: '#00e600',
+                hover: '#00cc00',
                 disabled: '#99ffbb',
-                border: '#00e64d',
+                border: '#00cc00',
             },
         },
     },
